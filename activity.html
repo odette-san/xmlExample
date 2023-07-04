@@ -46,7 +46,7 @@
             // for every price in the title which value is less than 10
             // display it using txt variable 
             for(idx = 0; i < title.length; idx++) {
-                if (price[idx].childNodes[0].nodeValue > 10) {
+                if (price[idx].childNodes[0].nodeValue < 10) {
                     txt += title[idx].childNodes[0].nodeValue + "<br>";
                 }
             }
