@@ -5,11 +5,12 @@
     </head>
     <body>
         <h2>Displaying Contents from XML File</h2>
-        <p id="activity"></p>
+            <p id="activity"></p>
         <div>
             <button type="button" onclick="loadXML()">Load XML File</button>
         </div>
     </body>
+
     <!--JavaScript for XML HTTP Request-->
     <script>
         // function to load XML file using new http request
@@ -26,14 +27,14 @@
 
             //once xml file is ready, execute new function (has xmlFunction inside)
             xHTTP.onreadystatechange = function(){
-                xmlFunction(this);
+                myFunction(this);
             };
         }
 
         // xmlFunction
         // function to know which data will be displayed
         // used for-loop
-        function xmlFunction(xml){  
+        function myFunction(xml){  
             // declare variables
             var price, title, idx, xmlDox, txt;
 
@@ -45,7 +46,7 @@
             // for every item until the last using title tag it will increment
             // for every price in the title which value is less than 10
             // display it using txt variable 
-            for(idx = 0; i < title.length; idx++) {
+            for(idx = 0; idx < title.length; idx++) {
                 if (price[idx].childNodes[0].nodeValue < 10) {
                     txt += title[idx].childNodes[0].nodeValue + "<br>";
                 }
