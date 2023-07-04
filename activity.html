@@ -18,10 +18,10 @@
         function loadXML(){
 
             // create new xml http request object
-            var xhttp = new xmlHttpRequest(); 
+            var xhttp = new XMLHttpRequest(); 
             
             //open the xml file 
-            xhttp.open("GET", "./catalog.xml", true);
+            xhttp.open("GET", "../catalog.xml", true);
 
             xhttp.send();
 
@@ -47,7 +47,7 @@
             // for every price in the title which value is less than 10
             // display it using txt variable 
             for(idx = 0; idx < title.length; idx++) {
-                if (price[idx].childNodes[0].nodeValue < 10.00) {
+                if (parseFloat(price[idx].childNodes[0].nodeValue) < 10.00) {
                     txt += title[idx].childNodes[0].nodeValue + "<br>";
                 }
             }
