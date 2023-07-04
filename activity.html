@@ -41,9 +41,9 @@
             price = xmlDoc.getElementsByTagName("PRICE");
             title = xmlDoc.getElementsByTagName("TITLE");
 
-            // iterate through each item in the XML
+            // iterate through each catalog in the XML file
             for(idx = 0; idx < title.length; idx++) {
-                if (parseFloat(price[idx].childNodes[0].nodeValue) < 10.00) {
+                if (price[idx].childNodes[0].nodeValue < 10.00) {
                     txt += title[idx].childNodes[0].nodeValue + "<br>";
                 }
             }
