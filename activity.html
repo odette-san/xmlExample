@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>XML HTTP Request Acitivity</title>
+    </head>
+    <body>
+        <h2>Displaying Contents from XML File</h2>
+        <div>
+            <button type="button" onclick="loadXML()">Load XML File</button>
+        </div>
+    </body>
+    <!--JavaScript for XML HTTP Request-->
+    <script>
+        // function to load XML file using new http request
+        function loadXML(){
+
+            // create new xml http request object
+            var xHTTP = new xmlHttpRequest(); 
+            
+            //open the xml file 
+            xHTTP.open("GET", "catalog.xml", true);
+            
+            //get the xml file
+            xHTTP.send();
+
+            //once xml file is ready, execute new function (has xmlFunction inside)
+            xHTTP.onreadystatechange = function(){
+                xmlFunction(this);
+            };
+        }
+
+            // function to know which data will be displayed
+            // used for-loop
+        function xmlFunction(xml){  
+            // declare variables
+            var price, title, idx, xmlDox, txt;
+
+            xmlDox = xml.responseXML;
+            txt = "";
+            price = xmlDox.getElementsByTagName("PRICE");
+            title = xmlDox.getElementsByTagName("TITLE");
+
+            // for every item until the last using title tag it will increment
+            // for every price in the title which value is less than 10
+            // display it using txt variable 
+            for(idx = 0; i < title.length; idx++) {
+                if (price[idx].childNodes[0].nodeValue > 10) {
+                    txt += title[idx].childNodes[0].nodeValue + "<br>";
+                }
+            }
+
+            //code to show the output 
+            document.getElementById("activity").innerHTML = txt;
+        }
+
+    </script>
+</html>
