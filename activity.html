@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>XML HTTP Request Acitivity</title>
+        <title>XML HTTP Request Activity</title>
     </head>
     <body>
         <h2>Displaying Contents from XML File</h2>
@@ -14,45 +14,41 @@
 
     <!--JavaScript for XML HTTP Request-->
     <script>
-        // function to load XML file using new http request
+        // function to load XML file using XMLHttpRequest
         function loadXML(){
 
-            // create new xml http request object
+            // create new XMLHttpRequest object
             var xhttp = new XMLHttpRequest(); 
             
-            //open the xml file 
-            xhttp.open("GET", "../catalog.xml", true);
+            // open the XML file 
+            xhttp.open("GET", "catalog.xml", true);
 
             xhttp.send();
 
-            //once xml file is ready, execute new function
+            // once XML file is ready, execute new function
             xhttp.onreadystatechange = function(){
                 myFunction(this);
             };
         }
 
-        // xmlFunction
-        // function to know which data will be displayed
-        // used for-loop
+        // function to process XML data and display
         function myFunction(xml){  
             // declare variables
-            var price, title, idx, xmlDox, txt;
+            var price, title, idx, xmlDoc, txt;
 
-            xmlDox = xml.responseXML;
+            xmlDoc = xml.responseXML;
             txt = " ";
-            price = xmlDox.getElementsByTagName("PRICE");
-            title = xmlDox.getElementsByTagName("TITLE");
+            price = xmlDoc.getElementsByTagName("PRICE");
+            title = xmlDoc.getElementsByTagName("TITLE");
 
-            // for every item until the last using title tag it will increment
-            // for every price in the title which value is less than 10
-            // display it using txt variable 
+            // iterate through each item in the XML
             for(idx = 0; idx < title.length; idx++) {
                 if (parseFloat(price[idx].childNodes[0].nodeValue) < 10.00) {
                     txt += title[idx].childNodes[0].nodeValue + "<br>";
                 }
             }
 
-            //code to show the output 
+            // code to show the output 
             document.getElementById("act").innerHTML = txt;
         }
 
