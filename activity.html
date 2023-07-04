@@ -5,11 +5,12 @@
     </head>
     <body>
         <h2>Displaying Contents from XML File</h2>
-            <p id="activity"></p>
         <div>
             <button type="button" onclick="loadXML()">Load XML File</button>
         </div>
+        <p id="act"></p>
     </body>
+
 
     <!--JavaScript for XML HTTP Request-->
     <script>
@@ -17,16 +18,15 @@
         function loadXML(){
 
             // create new xml http request object
-            var xHTTP = new xmlHttpRequest(); 
+            var xhttp = new xmlHttpRequest(); 
             
             //open the xml file 
-            xHTTP.open("GET", "catalog.xml", true);
-            
-            //get the xml file
-            xHTTP.send();
+            xhttp.open("GET", "./catalog.xml", true);
 
-            //once xml file is ready, execute new function (has xmlFunction inside)
-            xHTTP.onreadystatechange = function(){
+            xhttp.send();
+
+            //once xml file is ready, execute new function
+            xhttp.onreadystatechange = function(){
                 myFunction(this);
             };
         }
@@ -39,7 +39,7 @@
             var price, title, idx, xmlDox, txt;
 
             xmlDox = xml.responseXML;
-            txt = "";
+            txt = " ";
             price = xmlDox.getElementsByTagName("PRICE");
             title = xmlDox.getElementsByTagName("TITLE");
 
@@ -47,13 +47,13 @@
             // for every price in the title which value is less than 10
             // display it using txt variable 
             for(idx = 0; idx < title.length; idx++) {
-                if (price[idx].childNodes[0].nodeValue < 10) {
+                if (price[idx].childNodes[0].nodeValue < 10.00) {
                     txt += title[idx].childNodes[0].nodeValue + "<br>";
                 }
             }
 
             //code to show the output 
-            document.getElementById("activity").innerHTML = txt;
+            document.getElementById("act").innerHTML = txt;
         }
 
     </script>
